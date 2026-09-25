@@ -166,10 +166,10 @@ export const PartiesView: React.FC = () => {
                     </strong>
                   </div>
                   <div className="flex items-center justify-between text-[#718579]">
-                    <span>Headquarters:</span>
-                    <span className="text-white font-medium truncate max-w-[160px]">
-                      {party.headquarters}
-                    </span>
+                    <span>Founded:</span>
+                    <strong className="text-white font-medium">
+                      {party.founded ?? '—'}
+                    </strong>
                   </div>
                 </div>
               </div>

@@ -165,11 +165,12 @@ export const electionService = {
 
     NIGERIA_STATES.forEach((s) => {
       if (s.name.toLowerCase().includes(q)) {
+        const lgaCount = LGAS.filter((l) => l.stateId === s.id).length;
         results.push({
           id: s.id,
           name: s.name,
           type: 'STATE',
-          qualification: `${s.geoZone} Geopolitical Zone · ${s.totalLgas} LGAs`,
+          qualification: `${lgaCount} LGAs on record · State Directory`,
         });
       }
     });
