@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+  update:
+    runs-on: ubuntu-latest
+    needs: quality
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Setup EAS
+        uses: expo/expo-github-action@v9
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          eas-cache: true
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish Update
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          CI: 1
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          if [[ "$COMMIT_MSG" == *"[skip-update]"* ]]; then
+            echo "Skipping update per [skip-update] tag in commit message"
+            exit 0
+          fi
+
+          FIRST_LINE="${COMMIT_MSG%%$'\n'*}"
+          if [[ "$FIRST_LINE" =~ ^\[release\]\ (.+)$ ]]; then
+            MESSAGE="Auto-update: ${BASH_REMATCH[1]}"
+          else
+            MESSAGE="Auto-update: Improvements and bug fixes"
+          fi
+
+            eas update \
+            --channel preview \
+            --platform all \
+            --message "$MESSAGE" \
+            --non-interactive \
+            --json > /tmp/eas-update-output.json 2>&1 || { cat /tmp/eas-update-output.json; exit 1; }
+          echo "--- eas-cli output (on success) ---"
+          cat /tmp/eas-update-output.json || true

@@ -1,0 +1,8 @@
+{
+  "name": "Aquila - Nigerian Election Intelligence & Reporting",
+  "description": "Real-time election monitoring, AI-powered vote share projections, incident reporting, and field collation platform for accredited observers and agents.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
