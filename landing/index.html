@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iAquila — Independent Election Monitoring &amp; Parallel Collation System</title>
+  <meta name="description" content="Independent electoral intelligence, parallel collation, live field incident triage, and AI projection engine for accredited observer missions in Nigeria." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://app.iaquila.com.ng/assets/favicon.png" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #070C09;
+      --card-bg: #0E1712;
+      --card-elevated: #13211A;
+      --border: #1C2E24;
+      --border-highlight: rgba(16, 185, 129, 0.4);
+      --primary: #10B981;
+      --primary-dark: #0D6338;
+      --accent: #34D399;
+      --text: #F1F7F3;
+      --text-muted: #8E9C94;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      selection-background-color: var(--primary);
+      selection-color: #000;
+    }
+
+    /* Ambient Background Glow */
+    .glow-top {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(13, 99, 56, 0.35) 0%, rgba(7, 12, 9, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 12, 9, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+    .brand-tag {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--primary);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #FFFFFF;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #127a47 0%, #34D399 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(16, 185, 129, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #FFFFFF;
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      background: rgba(16, 185, 129, 0.08);
+    }
+    .btn-lg {
+      padding: 0.9rem 1.8rem;
+      font-size: 1rem;
+      border-radius: 12px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 0 4rem;
+      text-align: center;
+    }
+    .live-pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(13, 99, 56, 0.25);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary);
+      animation: pulseAnim 2s infinite;
+    }
+    @keyframes pulseAnim {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      color: #FFFFFF;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+    }
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 5rem;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: left;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Console Preview Card */
+    .preview-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      margin-bottom: 6rem;
+      position: relative;
+    }
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .console-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .preview-body {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+    .tally-box {
+      background: #070C09;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .tally-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .candidate-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .candidate-row:last-child {
+      border-bottom: none;
+    }
+    .candidate-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .party-chip {
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.75rem;
+    }
+    .chip-apc { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
+    .chip-pdp { background: rgba(239, 68, 68, 0.2); color: #F87171; }
+    .chip-lp { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+    .chip-nnpp { background: rgba(245, 158, 11, 0.2); color: #FBBF24; }
+
+    /* Features Grid */
+    .features-section {
+      padding: 4rem 0 6rem;
+    }
+    .section-title-wrap {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3.5rem;
+    }
+    .section-badge {
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    h2 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-highlight);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 1.25rem;
+    }
+    .feature-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.75rem;
+    }
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Mobile App Banner */
+    .mobile-banner {
+      background: linear-gradient(135deg, #0A140F 0%, #11261B 100%);
+      border: 1px solid var(--border-highlight);
+      border-radius: 20px;
+      padding: 3.5rem;
+      margin-bottom: 6rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .badge-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    /* Registration Form Card */
+    .form-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      max-width: 800px;
+      margin: 0 auto 6rem;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+    .form-input {
+      width: 100%;
+      background: #070C09;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      background: #040806;
+      padding: 4rem 0 2rem;
+      font-size: 0.875rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .footer-col h4 {
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 0.6rem;
+    }
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--primary);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-highlight);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 540px;
+      width: 100%;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .preview-body { grid-template-columns: 1fr; }
+      .mobile-banner { grid-template-columns: 1fr; padding: 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      h1 { font-size: 2.3rem; }
+      .nav-links { display: none; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-top"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrap">
+      <a href="/" class="brand">
+        <span>iAQUILA</span>
+        <span class="brand-tag">Accredited Observer Suite</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#collation">Parallel Collation</a></li>
+        <li><a href="#mobile">Mobile App</a></li>
+        <li><a href="https://app.iaquila.com.ng/support.html">Support</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://app.iaquila.com.ng" class="btn btn-outline">Sign In</a>
+        <a href="#register" class="btn btn-primary">Request Access</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="live-pulse">
+        <span class="pulse-dot"></span>
+        <span>Live &bull; Federal Republic of Nigeria Observer Network</span>
+      </div>
+
+      <h1>
+        Independent Election Intelligence<br />
+        <span class="gradient-text">&amp; Parallel Collation Suite</span>
+      </h1>
+
+      <p class="hero-sub">
+        Empowering accredited observer missions, field agents, and civil society with cryptographic vote collation, real-time incident triage, and verified electoral transparency across all 176,846 Polling Units.
+      </p>
+
+      <div class="hero-cta">
+        <a href="https://app.iaquila.com.ng" class="btn btn-primary btn-lg">
+          Launch Situation Room Console &rarr;
+        </a>
+        <a href="#register" class="btn btn-outline btn-lg">
+          Request Mission Accreditation
+        </a>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">176,846</div>
+          <div class="stat-label">Federally Gazetted Polling Units</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">774</div>
+          <div class="stat-label">Local Government Areas (LGAs)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">36 + FCT</div>
+          <div class="stat-label">States Under Active Surveillance</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">&lt; 15s</div>
+          <div class="stat-label">Parallel Collation Verification Latency</div>
+        </div>
+      </div>
+
+      <!-- Console Simulation Mockup -->
+      <div class="preview-card" id="collation">
+        <div class="preview-header">
+          <div class="console-indicator">
+            <span class="pulse-dot"></span>
+            <span>NATIONAL SITUATION ROOM &bull; LIVE PULSE VERIFIED</span>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+            STATION ID: IAQ-HQ-01
+          </span>
+        </div>
+
+        <div class="preview-body">
+          <div class="tally-box">
+            <div class="tally-title">Parallel Candidate Collation Snapshot (Form EC8A Aggregation)</div>
+            <div class="candidate-row">
+              <div class="candidate-info">
+                <span class="party-chip chip-apc">APC</span>
+                <div>
+                  <div style="font-weight: 700; color: #FFFFFF;">Bola Ahmed Tinubu</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">Incumbent Baseline &bull; 8,794,726 votes (35.2%)</div>
+                </div>
+              </div>
+              <div style="font-family: var(--font-mono); font-weight: 700; color: #60A5FA;">35.2%</div>
+            </div>
+
+            <div class="candidate-row">
+              <div class="candidate-info">
+                <span class="party-chip chip-pdp">PDP</span>
+                <div>
+                  <div style="font-weight: 700; color: #FFFFFF;">Atiku Abubakar</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">National Opposition &bull; 6,984,520 votes (28.0%)</div>
+                </div>
+              </div>
+              <div style="font-family: var(--font-mono); font-weight: 700; color: #F87171;">28.0%</div>
+            </div>
+
+            <div class="candidate-row">
+              <div class="candidate-info">
+                <span class="party-chip chip-lp">LP</span>
+                <div>
+                  <div style="font-weight: 700; color: #FFFFFF;">Peter Gregory Obi</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">Urban Momentum Axis &bull; 6,101,533 votes (24.4%)</div>
+                </div>
+              </div>
+              <div style="font-family: var(--font-mono); font-weight: 700; color: #34D399;">24.4%</div>
+            </div>
+
+            <div class="candidate-row">
+              <div class="candidate-info">
+                <span class="party-chip chip-nnpp">NNPP</span>
+                <div>
+                  <div style="font-weight: 700; color: #FFFFFF;">Rabiu Musa Kwankwaso</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">Kano Core Corridor &bull; 1,496,687 votes (6.0%)</div>
+                </div>
+              </div>
+              <div style="font-family: var(--font-mono); font-weight: 700; color: #FBBF24;">6.0%</div>
+            </div>
+          </div>
+
+          <div class="tally-box" style="text-align: left;">
+            <div class="tally-title">Electoral Integrity Safeguards</div>
+            <ul style="list-style: none; font-size: 0.85rem; color: #D1DED6; display: flex; flex-direction: column; gap: 0.85rem;">
+              <li>&bull; <strong style="color: #FFF;">Zero-Trust Geotagging:</strong> GPS locked to gazetted PU boundaries.</li>
+              <li>&bull; <strong style="color: #FFF;">Cryptographic Drafts:</strong> Unbroken collation trails in dead-signal zones.</li>
+              <li>&bull; <strong style="color: #FFF;">Anti-Spoof Live Capture:</strong> Gallery uploads blocked to guarantee authentic evidence.</li>
+              <li>&bull; <strong style="color: #FFF;">Constitutional Boundary:</strong> Mathematical simulation models (Official declarations strictly reserved for INEC).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Platform Capabilities</span>
+        <h2>Engineered for High-Stakes Electoral Observation</h2>
+        <p style="color: var(--text-muted);">
+          A dual-ecosystem mobile and situation room architecture built to resist network blackouts, verify ballot authenticity, and triage critical incident alerts in real time.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="feature-icon">&Phi;</div>
+          <div class="feature-title">Parallel Vote Tabulation (PVT)</div>
+          <div class="feature-desc">
+            Direct Form EC8A tally entry and verification. Compare accredited voter figures against total votes cast to flag statistical anomalies and over-voting instantly.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">&nabla;</div>
+          <div class="feature-title">Live Field Incident Triage</div>
+          <div class="feature-desc">
+            Real-time reporting of ballot snatching, late logistics arrival, BVAS malfunctions, and violence with live audio recordings and geotagged photographic evidence.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">&Theta;</div>
+          <div class="feature-title">AI Projection Modeling</div>
+          <div class="feature-desc">
+            Comparative vote share projections simulating 2023 historical baselines, 2019 patterns, and weighted turnout correlations across all six geopolitical zones.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">&Xi;</div>
+          <div class="feature-title">Cryptographic Offline Queue</div>
+          <div class="feature-desc">
+            Autonomous hardware keystore buffering stores submissions safely when field agents operate in remote areas with zero cell reception, auto-syncing upon reconnection.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">&Sigma;</div>
+          <div class="feature-title">Multi-Tenant Partitioning</div>
+          <div class="feature-desc">
+            Dedicated situation rooms for independent civil society organizations (CSOs), observer coalitions, and political monitoring desks with strict tenant isolation.
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">&Omega;</div>
+          <div class="feature-title">NDPA 2023 Compliant</div>
+          <div class="feature-desc">
+            Built from the ground up to uphold the Nigeria Data Protection Act 2023 with localized data handling, end-to-end encryption, and full auditability.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile App Download Banner -->
+  <section class="container" id="mobile">
+    <div class="mobile-banner">
+      <div>
+        <div class="brand-tag" style="margin-bottom: 1rem; display: inline-block;">Field Observer App</div>
+        <h2 style="font-size: 2rem; margin-bottom: 0.75rem;">iAquila Mobile for Android &amp; iOS</h2>
+        <p style="color: #A3B8AC; font-size: 0.95rem;">
+          Designed specifically for Polling Unit Agents and Cluster Supervisors with covert stealth reporting modes, zero-gallery live capture, and one-tap EC8A draft submission.
+        </p>
+        <div class="badge-wrap">
+          <a href="https://app.iaquila.com.ng" class="btn btn-primary">
+            Open Web Console &rarr;
+          </a>
+          <a href="mailto:support@iaquila.com.ng?subject=Mobile%20APK%20Request" class="btn btn-outline">
+            Request Field Agent APK
+          </a>
+        </div>
+      </div>
+      <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: #8E9C94;">
+        <div style="color: var(--primary); font-weight: bold; margin-bottom: 0.5rem;">// APPLICATION METRICS</div>
+        <div>Package: com.alabian.aquila</div>
+        <div>Target: Android 14+ / iOS 17+</div>
+        <div>Engine: React Native 0.86 / Expo SDK 57</div>
+        <div>Security: AES-256 / SecureStore</div>
+        <div>Status: Certified Observer Release</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accreditation Request / Registration Form -->
+  <section class="container" id="register">
+    <div class="form-section">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="section-badge">Accredited Access</span>
+        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Request Observer Mission Onboarding</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Provision your organization tenancy, field agent seats, and situation room access codes.
+        </p>
+      </div>
+
+      <form id="onboardingForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="orgName">Organization / Mission Name *</label>
+            <input type="text" id="orgName" class="form-input" placeholder="e.g. West Africa Observer Mission" required />
+          </div>
+          <div class="form-group">
+            <label for="missionType">Mission Classification *</label>
+            <select id="missionType" class="form-input" required>
+              <option value="CSO">Civil Society Organization (CSO)</option>
+              <option value="INTERNATIONAL">International Observer Body</option>
+              <option value="PARTY">Political Monitoring Desk</option>
+              <option value="MEDIA">Accredited Electoral Media</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="contactEmail">Official Contact Email *</label>
+            <input type="email" id="contactEmail" class="form-input" placeholder="lead@yourorganization.org" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp *</label>
+            <input type="tel" id="phone" class="form-input" placeholder="+234 800 000 0000" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="agentCount">Projected Field Agent Deployment</label>
+          <select id="agentCount" class="form-input">
+            <option value="1-50">1 - 50 Agents (Targeted Wards)</option>
+            <option value="50-250">50 - 250 Agents (LGA Cluster)</option>
+            <option value="250-1000">250 - 1,000 Agents (Statewide Coverage)</option>
+            <option value="1000+">1,000+ Agents (National Deployment)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-size: 1rem; margin-top: 1rem;">
+          Submit Mission Application
+        </button>
+
+        <div id="formSuccess" style="display: none; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--primary); padding: 1rem; border-radius: 8px; margin-top: 1.25rem; font-size: 0.9rem; color: #FFFFFF; text-align: center;">
+          &check; Application submitted successfully. Our mission onboarding desk will verify your credentials and dispatch situation room tenancy credentials within 24 hours.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand" style="margin-bottom: 1rem;">
+            <span>iAQUILA</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; max-width: 320px;">
+            Certified independent electoral intelligence and parallel collation infrastructure. Built for accredited observers in the Federal Republic of Nigeria.
+          </p>
+          <div style="margin-top: 1.25rem;">
+            <a href="https://app.iaquila.com.ng" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.5rem 1rem;">
+              Situation Room Login &rarr;
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="https://app.iaquila.com.ng">Web Console</a></li>
+            <li><a href="#features">Collation Engine</a></li>
+            <li><a href="#features">AI Projections</a></li>
+            <li><a href="#mobile">Mobile Observer App</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support &amp; Desk</h4>
+          <ul>
+            <li><a href="https://app.iaquila.com.ng/support.html">Help Desk &amp; FAQs</a></li>
+            <li><a href="mailto:support@iaquila.com.ng">Technical Support</a></li>
+            <li><a href="mailto:desk@iaquila.com.ng">Situation Room Desk</a></li>
+            <li><a href="mailto:privacy@iaquila.com.ng">Data Protection Office</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal &amp; Compliance</h4>
+          <ul>
+            <li><a href="https://app.iaquila.com.ng/privacy.html">Privacy Policy</a></li>
+            <li><a href="https://app.iaquila.com.ng/terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="https://app.iaquila.com.ng/deletion.html">Account &amp; Data Deletion</a></li>
+            <li><span style="font-size: 0.75rem; color: #52665B;">NDPA 2023 Certified</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 iAquila &bull; Alabian Solutions Limited. All rights reserved.</div>
+        <div>Constitutional Disclaimer: Official declarations are the exclusive constitutional prerogative of INEC.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('onboardingForm').reset();
+    }
+  </script>
+</body>
+</html>

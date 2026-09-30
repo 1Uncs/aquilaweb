@@ -364,6 +364,10 @@ export const LoginView: React.FC = () => {
             <a href="/deletion.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition underline">
               Data Deletion
             </a>
+            <span>•</span>
+            <a href="/support.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition underline">
+              Support
+            </a>
           </div>
         </div>
       </div>

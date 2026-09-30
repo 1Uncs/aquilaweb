@@ -76,6 +76,8 @@ export const AppContent: React.FC = () => {
             <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition">Terms &amp; Conditions</a>
             <span>•</span>
             <a href="/deletion.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition">Data Deletion</a>
+            <span>•</span>
+            <a href="/support.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition">Support</a>
           </div>
           <p className="text-[11px]">
             Certified for Accredited Observer Missions • Federal Republic of Nigeria
