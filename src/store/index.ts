@@ -133,18 +133,9 @@ interface AppState {
 const defaultAccount = PREDEFINED_ACCOUNTS[0];
 
 export const useAppStore = create<AppState>((set, get) => ({
-  // Default logged in as Field Agent for instantaneous interactive use
-  user: {
-    id: 'u-default-1',
-    email: defaultAccount.email,
-    name: defaultAccount.name,
-    role: defaultAccount.role,
-    organizationId: defaultAccount.organizationId,
-    organizationName: defaultAccount.organizationName,
-    assignedLocations: defaultAccount.assignedPus,
-    watchCandidateId: 'cand1',
-  },
-  isAuthenticated: true,
+  // Default to unauthenticated so users start on the Login screen
+  user: null,
+  isAuthenticated: false,
 
   loginWithAccount: (account) => {
     set({

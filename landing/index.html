@@ -449,6 +449,51 @@
       gap: 1rem;
       margin-top: 1.75rem;
     }
+    .store-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-top: 1.25rem;
+    }
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #000000;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 9px;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-width: 155px;
+    }
+    .store-badge:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+    .store-badge-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .store-badge-sub {
+      font-size: 0.65rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      opacity: 0.8;
+      color: #FFFFFF;
+    }
+    .store-badge-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
 
     /* Registration Form Card */
     .form-section {
@@ -633,6 +678,44 @@
         </a>
       </div>
 
+      <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3.5rem;">
+        <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-right: 0.25rem;">
+          Field App:
+        </span>
+        <a href="#mobile" class="store-badge" style="padding: 0.35rem 0.75rem; min-width: auto;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.78 1.06-1.85.94-2.94-.92.04-2.02.61-2.67 1.39-.58.68-1.09 1.77-.95 2.83 1.03.08 2.06-.52 2.68-1.28z"/>
+          </svg>
+          <div class="store-badge-text">
+            <span class="store-badge-sub" style="font-size: 0.55rem;">iOS App</span>
+            <span class="store-badge-title" style="font-size: 0.8rem;">App Store</span>
+          </div>
+        </a>
+
+        <a href="#mobile" class="store-badge" style="padding: 0.35rem 0.75rem; min-width: auto;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M3.609 1.814L13.793 12 3.61 22.186A2.25 2.25 0 0 1 3 20.6V3.4c0-.62.22-1.2.609-1.586z" fill="#00C3FF"/>
+            <path d="M17.18 8.613L13.793 12l3.387 3.387 3.82-2.19a2.23 2.23 0 0 0 0-3.884l-3.82-2.19z" fill="#FFD400"/>
+            <path d="M3.609 1.814l10.184 10.186 3.387-3.387-11.45-6.56C5.074 1.65 4.29 1.62 3.609 1.814z" fill="#00E676"/>
+            <path d="M17.18 15.387l-3.387-3.387L3.609 22.186c.681.194 1.465.164 2.121-.213l11.45-6.586z" fill="#FF334B"/>
+          </svg>
+          <div class="store-badge-text">
+            <span class="store-badge-sub" style="font-size: 0.55rem;">Android App</span>
+            <span class="store-badge-title" style="font-size: 0.8rem;">Google Play</span>
+          </div>
+        </a>
+
+        <a href="mailto:support@iaquila.com.ng?subject=Mobile%20APK%20Request" class="store-badge" style="padding: 0.35rem 0.75rem; min-width: auto;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #10B981;">
+            <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 2.23 12.95 2 12 2c-.96 0-1.86.23-2.66.63L7.85 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 4.26 6 5.92 6 7.8h12c0-1.88-.97-3.54-2.47-4.64zM9 5.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75zm6 0c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/>
+          </svg>
+          <div class="store-badge-text">
+            <span class="store-badge-sub" style="font-size: 0.55rem;">Direct Install</span>
+            <span class="store-badge-title" style="font-size: 0.8rem;">Android APK</span>
+          </div>
+        </a>
+      </div>
+
       <!-- Stats Bar -->
       <div class="stats-grid">
         <div class="stat-card">
@@ -799,12 +882,38 @@
         <p style="color: #A3B8AC; font-size: 0.95rem;">
           Designed specifically for Polling Unit Agents and Cluster Supervisors with covert stealth reporting modes, zero-gallery live capture, and one-tap EC8A draft submission.
         </p>
-        <div class="badge-wrap">
-          <a href="https://app.iaquila.com.ng" class="btn btn-primary">
-            Open Web Console &rarr;
+        <div class="store-badges">
+          <a href="#mobile" class="store-badge" title="Download on the Apple App Store">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.78 1.06-1.85.94-2.94-.92.04-2.02.61-2.67 1.39-.58.68-1.09 1.77-.95 2.83 1.03.08 2.06-.52 2.68-1.28z"/>
+            </svg>
+            <div class="store-badge-text">
+              <span class="store-badge-sub">Download on the</span>
+              <span class="store-badge-title">App Store</span>
+            </div>
           </a>
-          <a href="mailto:support@iaquila.com.ng?subject=Mobile%20APK%20Request" class="btn btn-outline">
-            Request Field Agent APK
+
+          <a href="#mobile" class="store-badge" title="Get it on Google Play">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3.609 1.814L13.793 12 3.61 22.186A2.25 2.25 0 0 1 3 20.6V3.4c0-.62.22-1.2.609-1.586z" fill="#00C3FF"/>
+              <path d="M17.18 8.613L13.793 12l3.387 3.387 3.82-2.19a2.23 2.23 0 0 0 0-3.884l-3.82-2.19z" fill="#FFD400"/>
+              <path d="M3.609 1.814l10.184 10.186 3.387-3.387-11.45-6.56C5.074 1.65 4.29 1.62 3.609 1.814z" fill="#00E676"/>
+              <path d="M17.18 15.387l-3.387-3.387L3.609 22.186c.681.194 1.465.164 2.121-.213l11.45-6.586z" fill="#FF334B"/>
+            </svg>
+            <div class="store-badge-text">
+              <span class="store-badge-sub">Get it on</span>
+              <span class="store-badge-title">Google Play</span>
+            </div>
+          </a>
+
+          <a href="mailto:support@iaquila.com.ng?subject=Mobile%20APK%20Request" class="store-badge" title="Direct Android APK Download">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color: #10B981;">
+              <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 2.23 12.95 2 12 2c-.96 0-1.86.23-2.66.63L7.85 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 4.26 6 5.92 6 7.8h12c0-1.88-.97-3.54-2.47-4.64zM9 5.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75zm6 0c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/>
+            </svg>
+            <div class="store-badge-text">
+              <span class="store-badge-sub">Direct Install</span>
+              <span class="store-badge-title">Android APK</span>
+            </div>
           </a>
         </div>
       </div>
