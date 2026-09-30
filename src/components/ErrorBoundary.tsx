@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('[Aquila Station Crash Caught by ErrorBoundary]:', error, errorInfo);
+    console.error('[iAquila Station Crash Caught by ErrorBoundary]:', error, errorInfo);
     this.setState({ errorInfo });
   }
 

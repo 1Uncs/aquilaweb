@@ -91,7 +91,7 @@ const ReportIncidentContent: React.FC<ReportIncidentContentProps> = ({
       latitude: pu?.latitude || 6.595,
       longitude: pu?.longitude || 3.342,
       mediaUrls,
-      reportedBy: userEmail || 'observer@aquila.ng',
+      reportedBy: userEmail || 'observer@iaquila.com.ng',
       reportedAt: new Date().toISOString(),
     };
 

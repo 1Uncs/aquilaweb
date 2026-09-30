@@ -43,3 +43,11 @@
   * List Architecture (FlashList -> Built-in FlatList): Fully transitioned from `@shopify/flash-list` to React Native's built-in `FlatList` across `results`, `incidents`, `pu-picker`, `parties`, `election-detail`, and search screens. Solved the screen detach offset reset bug and scroll repositioning on `goBack()`.
   * Native Header & Inset Alignment: Push screens use clean native Stack headers (`headerTransparent: true` on iOS with zero blur effect; native toolbar matching `colors.background` on Android). Duplicate in-screen headings removed from `incident-report` and `pu-picker`.
   * Elections Tab Filter Pills: Replaced oversized `<Button>` elements with sleek, compact horizontal filter chips (`cycleChip`).
+  * Live Status Badge & Pulse Cleanup: Replaced debug `PULSE #<tick>` counter and manual pause/step controls in Header with clean production `LIVE · Synced` indicator and `LIVE COLLATION` status badges.
+  * Station Console Header Compaction & Multi-Viewport Adaptability: Reduced station console vertical height by ~45% (desktop merges into single horizontal command strip; mobile splits into 2 ergonomic tiers with compact badges and auto-scaled metrics). Verified responsiveness across 320px–430px phones, 768px–1024px tablets, and desktop/ultrawide displays.
+  * Station Console Dead Zone Elimination: Converted desktop container to `w-fit` with tight inter-metric spacing (`gap-6 lg:gap-8`) and vertical divider, eliminating horizontal dead zone across ultra-wide viewports while preserving edge-to-edge flow on mobile.
+
+## Verification Status
+Staff Invariant Audit: INVARIANTS VERIFIED
+- `tsc --noEmit`: Exited with code 0.
+- `vite build`: Clean production bundle built successfully.

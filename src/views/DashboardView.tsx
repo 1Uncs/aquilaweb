@@ -109,6 +109,10 @@ export const DashboardView: React.FC = () => {
 
   const draftSubmissions = results.filter((r) => r.status === 'DRAFT');
   const isFieldUser = user?.role === 'FIELD_AGENT' || user?.role === 'POLLING_AGENT';
+  const isOfficerOrAbove =
+    user?.role === 'ELECTION_OFFICER' ||
+    user?.role === 'ADMINISTRATOR' ||
+    user?.role === 'SUPER_ADMINISTRATOR';
   const isSupervisory = !isFieldUser;
 
   const roleLabel =
@@ -163,60 +167,87 @@ export const DashboardView: React.FC = () => {
 
   return (
     <div className="space-y-4 pb-16">
-      {/* 1. Station Console Header (app/(app)/(tabs)/index.tsx lines 233-289) */}
-      <div className="rounded-2xl border border-[#1C2E24] bg-[#0D6338]/[0.05] p-5 shadow-lg backdrop-blur-sm">
-        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-              <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#10B981]">
-                {user?.organizationName ?? 'AQUILA SITUATION ROOM'}
+      {/* 1. Station Console Header (Compacted, closely grouped command strip) */}
+      <div className="w-full md:w-fit rounded-xl border border-[#1C2E24] bg-[#0D6338]/[0.05] p-3 sm:p-3.5 lg:p-4 shadow-md backdrop-blur-sm">
+        <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 lg:gap-8">
+          {/* Organization & Collation Title */}
+          <div className="flex items-center justify-between md:justify-start gap-3">
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
+                <span className="text-[10px] sm:text-[11px] font-extrabold tracking-wider text-[#10B981]">
+                  {(user?.organizationName ?? 'iAQUILA Situation Room HQ').replace(/i?aquila/gi, 'iAQUILA')}
+                </span>
+              </div>
+              <h1 className="text-base sm:text-lg font-black text-white leading-tight mt-0.5 whitespace-nowrap">
+                Presidential Collation
+              </h1>
+            </div>
+
+            {/* Mobile-only Live Collation Badge */}
+            <div className="md:hidden inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping" />
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#10B981]">
+                LIVE
               </span>
             </div>
-            <h1 className="text-xl sm:text-2xl font-black text-white mt-1">
-              Presidential Collation
-            </h1>
           </div>
 
-          {/* Live Pulse Indicator Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#10B981]/10 border border-[#10B981]/30">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-ping" />
-            <span className="text-xs font-black uppercase tracking-wider text-[#10B981]">
-              LIVE PULSE
-            </span>
-          </div>
-        </div>
+          {/* Desktop Divider between Title and Telemetry */}
+          <div className="hidden md:block h-8 w-px bg-[#1C2E24]" />
 
-        {/* Real-time Ticker stats row */}
-        <div className="grid grid-cols-3 gap-4 mt-5 pt-4 border-t border-[#1C2E24]/60">
-          <div>
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#718579] block">
-              REPORTING PUs
-            </span>
-            <span className="text-lg sm:text-2xl font-black text-white">
-              {(725 + pulseTick).toLocaleString()}
-            </span>
-          </div>
-          <div className="border-l border-[#1C2E24] pl-4">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#718579] block">
-              TOTAL VOTES TALLIED
-            </span>
-            <span className="text-lg sm:text-2xl font-black text-[#10B981]">
-              {grandTotalVotes.toLocaleString()}
-            </span>
-          </div>
-          <div className="border-l border-[#1C2E24] pl-4">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#718579] block">
-              STATUS
-            </span>
-            <span className="text-lg sm:text-2xl font-black text-amber-400">
-              ACTIVE
-            </span>
+          {/* Real-time Ticker Stats & Desktop Live Badge */}
+          <div className="flex items-center justify-between md:justify-start gap-2.5 sm:gap-5 pt-2.5 md:pt-0 border-t md:border-t-0 border-[#1C2E24]/60">
+            <div className="text-left md:text-right">
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#718579] block leading-none">
+                Reporting PUs
+              </span>
+              <span className="text-sm sm:text-base font-black text-white whitespace-nowrap">
+                {(725 + pulseTick).toLocaleString()}
+              </span>
+            </div>
+
+            <div className="h-6 w-px bg-[#1C2E24]" />
+
+            <div className="text-left md:text-right">
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#718579] block leading-none">
+                Total Tallied
+              </span>
+              <span className="text-sm sm:text-base font-black text-[#10B981] whitespace-nowrap">
+                {grandTotalVotes.toLocaleString()}
+              </span>
+            </div>
+
+            <div className="h-6 w-px bg-[#1C2E24]" />
+
+            <div className="text-left md:text-right">
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#718579] block leading-none">
+                Status
+              </span>
+              <span className="text-sm sm:text-base font-black text-amber-400">
+                ACTIVE
+              </span>
+            </div>
+
+            {/* Desktop Live Collation Badge */}
+            <div className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 ml-2 whitespace-nowrap">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping" />
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#10B981]">
+                LIVE COLLATION
+              </span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* 2. Drafts Alert Banner (Only for Field & Polling Agents) */}
+      {/* 2. Top Executive Section: Compacted Tactical Heat Map (For Election Officer & Above) */}
+      {isOfficerOrAbove && (
+        <div className="transition-all duration-300">
+          <NigeriaHeatMap compact />
+        </div>
+      )}
+
+      {/* 2b. Drafts Alert Banner (Only for Field & Polling Agents) */}
       {isFieldUser && draftSubmissions.length > 0 && (
         <div
           onClick={() => setDraftsQueueOpen(true)}
@@ -396,7 +427,7 @@ export const DashboardView: React.FC = () => {
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white">Aquila AI Projection</h2>
+              <h2 className="text-base font-bold text-white">iAquila AI Projection</h2>
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#10B981]">
                 NEURAL ELECTION SIMULATION MODEL
               </span>
@@ -599,8 +630,8 @@ export const DashboardView: React.FC = () => {
       </div>
       </div>
 
-      {/* 4.5. Live Nigeria Geographic Heat Map */}
-      <NigeriaHeatMap />
+      {/* 4.5. Live Nigeria Geographic Heat Map (For Field Agents & Polling Agents) */}
+      {!isOfficerOrAbove && <NigeriaHeatMap />}
 
       {/* Two-Column Responsive Section: Assigned Polling Units & Operations / Quick Controls */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">

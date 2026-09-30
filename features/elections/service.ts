@@ -799,7 +799,7 @@ export const mockApi = {
         totalVotes: 9840300,
         margin: '+1,480,200 votes ahead',
         swing: '+3.8% in South-West corridor',
-        insight: `Aquila Neural Model projects a strong incumbency retention corridor across the South-West and North-West axis based on ${pastDataLabel}. Polling Unit collation shows steady turnout resilience in commercial urban centres.`,
+        insight: `iAquila Neural Model projects a strong incumbency retention corridor across the South-West and North-West axis based on ${pastDataLabel}. Polling Unit collation shows steady reporting resilience in commercial urban centres.`,
         histParty: 'APC',
       },
       cand2: {

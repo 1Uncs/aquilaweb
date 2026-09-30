@@ -79,7 +79,7 @@ export const ResultDetailModal: React.FC = () => {
             </div>
           </div>
 
-          {/* Turnout Statistics */}
+          {/* Accreditation & Ballot Statistics */}
           <div className="grid grid-cols-3 gap-3">
             <div className="bg-[#070C09] p-3 rounded-xl border border-[#1C2E24] text-center font-mono">
               <span className="text-[10px] text-[#718579] uppercase block mb-1">

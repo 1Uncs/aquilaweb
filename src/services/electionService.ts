@@ -69,7 +69,7 @@ export const electionService = {
         totalVotes: 9840300 + pulseOffset * 1420,
         margin: '+1,480,200 votes ahead',
         swing: '+3.8% in South-West corridor',
-        insight: `Aquila Neural Model projects strong incumbency retention across the South-West and North-West axis based on the ${pastDataYear} General Election baseline. Polling Unit collation shows steady turnout resilience in commercial urban centres.`,
+        insight: `iAquila Neural Model projects strong incumbency retention across the South-West and North-West axis based on the ${pastDataYear} General Election baseline. Polling Unit collation shows steady reporting resilience in commercial urban centres.`,
         histParty: 'APC',
       },
       cand2: {

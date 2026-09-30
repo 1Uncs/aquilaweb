@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Platform, KeyboardAvoidingView, ScrollView, View, StyleSheet, Pressable } from 'react-native';
 import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -13,10 +13,10 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 
 const ORG_PRESETS = [
-  { id: 'org-aquila', name: 'Aquila Situation Room', tag: 'HQ' },
-  { id: 'org-cdd', name: 'CDD West Africa', tag: 'CSO' },
-  { id: 'org-yiaga', name: 'YIAGA Africa Watching The Vote', tag: 'CSO' },
-  { id: 'org-inec', name: 'INEC Observer Mission', tag: 'OBSERVER' },
+  { id: 'org-iaquila', code: 'IAQ-HQ', name: 'iAQUILA Situation Room', tag: 'HQ' },
+  { id: 'org-cdd', code: 'CDD-WA', name: 'CDD West Africa', tag: 'CSO' },
+  { id: 'org-yiaga', code: 'YIAGA-WTV', name: 'YIAGA Africa Watching The Vote', tag: 'CSO' },
+  { id: 'org-inec', code: 'INEC-OBS', name: 'INEC Observer Mission', tag: 'OBSERVER' },
 ];
 
 export default function LoginScreen() {
@@ -30,9 +30,22 @@ export default function LoginScreen() {
   const [selectedOrg, setSelectedOrg] = useState(ORG_PRESETS[0]!);
   const [customOrg, setCustomOrg] = useState('');
   const [isCustomOrg, setIsCustomOrg] = useState(false);
+  const [orgDropdownOpen, setOrgDropdownOpen] = useState(false);
+  const [orgSearch, setOrgSearch] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const loginMutation = useLoginMutation();
+
+  const filteredOrgs = useMemo(() => {
+    const q = orgSearch.trim().toLowerCase();
+    if (!q) return ORG_PRESETS;
+    return ORG_PRESETS.filter(
+      (org) =>
+        org.code.toLowerCase().includes(q) ||
+        org.name.toLowerCase().includes(q) ||
+        org.tag.toLowerCase().includes(q)
+    );
+  }, [orgSearch]);
 
   const handleLogin = async () => {
     const orgId = isCustomOrg ? `org-${customOrg.toLowerCase().replace(/\s+/g, '-')}` : selectedOrg.id;
@@ -64,14 +77,14 @@ export default function LoginScreen() {
   const launchDemo = async (role: 'agent' | 'polling' | 'officer') => {
     setError('');
     try {
-      let demoEmail = 'agent@aquila.ng';
-      let org = ORG_PRESETS[0]!;
+      let demoEmail = 'agent@iaquila.com.ng';
+      let org = ORG_PRESETS.find((o) => o.id === 'org-iaquila') ?? ORG_PRESETS[0]!;
       if (role === 'polling') {
-        demoEmail = 'polling@aquila.ng';
-        org = ORG_PRESETS[2]!;
+        demoEmail = 'polling@iaquila.com.ng';
+        org = ORG_PRESETS.find((o) => o.id === 'org-yiaga') ?? ORG_PRESETS[2]!;
       } else if (role === 'officer') {
-        demoEmail = 'officer@aquila.ng';
-        org = ORG_PRESETS[0]!;
+        demoEmail = 'officer@iaquila.com.ng';
+        org = ORG_PRESETS.find((o) => o.id === 'org-iaquila') ?? ORG_PRESETS[0]!;
       }
 
       await loginMutation.mutateAsync({
@@ -122,7 +135,7 @@ export default function LoginScreen() {
                 />
               </View>
               <ThemedText variant="display" color="#FFFFFF" fontFamily="bold" style={styles.brandTitle}>
-                AQUILA
+                iAQUILA
               </ThemedText>
               <ThemedText variant="label" color="#10B981" fontFamily="medium" style={styles.brandSub}>
                 REAL-TIME ELECTION INTELLIGENCE · MULTI-TENANT CONSOLE
@@ -146,58 +159,104 @@ export default function LoginScreen() {
                     ORGANIZATION / TENANT
                   </ThemedText>
                 </View>
-                <View style={styles.orgChipsRow}>
-                  {ORG_PRESETS.map((org) => {
-                    const active = !isCustomOrg && selectedOrg.id === org.id;
-                    return (
-                      <Pressable
-                        key={org.id}
-                        onPress={() => {
-                          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                          setIsCustomOrg(false);
-                          setSelectedOrg(org);
-                        }}
-                        style={[
-                          styles.orgChip,
-                          {
-                            backgroundColor: active ? colors.primary + '16' : colors.borderSubtle,
-                            borderColor: active ? colors.primary : colors.border,
-                          },
-                        ]}
-                      >
-                        <ThemedText
-                          variant="caption"
-                          fontFamily={active ? 'bold' : 'regular'}
-                          style={{ color: active ? colors.primary : colors.textSecondary }}
-                          numberOfLines={1}
-                        >
-                          {org.name}
-                        </ThemedText>
-                      </Pressable>
-                    );
-                  })}
-                  <Pressable
-                    onPress={() => {
-                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                      setIsCustomOrg(true);
-                    }}
-                    style={[
-                      styles.orgChip,
-                      {
-                        backgroundColor: isCustomOrg ? colors.primary + '16' : colors.borderSubtle,
-                        borderColor: isCustomOrg ? colors.primary : colors.border,
-                      },
-                    ]}
-                  >
-                    <ThemedText
-                      variant="caption"
-                      fontFamily={isCustomOrg ? 'bold' : 'regular'}
-                      style={{ color: isCustomOrg ? colors.primary : colors.textSecondary }}
-                    >
-                      + Custom Org
+                {/* Searchable org-code dropdown */}
+                <Pressable
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    setOrgDropdownOpen((prev) => !prev);
+                  }}
+                  style={[
+                    styles.orgSelector,
+                    {
+                      backgroundColor: colors.surfaceElevated,
+                      borderColor: orgDropdownOpen ? colors.primary : colors.border,
+                    },
+                  ]}
+                  accessibilityLabel={`Selected organization ${selectedOrg.code} ${selectedOrg.name}`}
+                  accessibilityRole="button"
+                >
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <ThemedText variant="body" color="text" fontFamily="bold" numberOfLines={1}>
+                      {isCustomOrg ? 'Custom organization' : selectedOrg.code}
                     </ThemedText>
-                  </Pressable>
-                </View>
+                    <ThemedText variant="caption" color="textSecondary" numberOfLines={1}>
+                      {isCustomOrg ? customOrg.trim() || 'Enter name below' : selectedOrg.name}
+                    </ThemedText>
+                  </View>
+                  <Ionicons
+                    name={orgDropdownOpen ? 'chevron-up' : 'chevron-down'}
+                    size={18}
+                    color={colors.textSecondary}
+                  />
+                </Pressable>
+
+                {orgDropdownOpen && (
+                  <View style={[styles.orgDropdown, { backgroundColor: colors.surfaceElevated, borderColor: colors.border }]}>
+                    <Input
+                      placeholder="Search code or name (e.g. IAQ-HQ)"
+                      value={orgSearch}
+                      onChangeText={setOrgSearch}
+                      autoCapitalize="characters"
+                      leftIcon="search-outline"
+                      containerStyle={{ marginBottom: spacing.xs }}
+                    />
+                    {filteredOrgs.map((org) => {
+                      const active = !isCustomOrg && selectedOrg.id === org.id;
+                      return (
+                        <Pressable
+                          key={org.id}
+                          onPress={() => {
+                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                            setIsCustomOrg(false);
+                            setSelectedOrg(org);
+                            setOrgDropdownOpen(false);
+                            setOrgSearch('');
+                          }}
+                          style={[
+                            styles.orgOption,
+                            {
+                              backgroundColor: active ? colors.primary + '16' : 'transparent',
+                              borderColor: active ? colors.primary : 'transparent',
+                            },
+                          ]}
+                          accessibilityLabel={`${org.code} ${org.name}`}
+                        >
+                          <View style={[styles.orgCodePill, { backgroundColor: colors.primary + '22' }]}>
+                            <ThemedText variant="label" color="primary" fontFamily="bold">
+                              {org.code}
+                            </ThemedText>
+                          </View>
+                          <View style={{ flex: 1, minWidth: 0, marginLeft: spacing.xs }}>
+                            <ThemedText variant="caption" color="text" fontFamily={active ? 'bold' : 'regular'} numberOfLines={1}>
+                              {org.name}
+                            </ThemedText>
+                            <ThemedText variant="label" color="textMuted" numberOfLines={1}>
+                              {org.tag}
+                            </ThemedText>
+                          </View>
+                          {active && <Ionicons name="checkmark-circle" size={18} color={colors.primary} />}
+                        </Pressable>
+                      );
+                    })}
+                    {filteredOrgs.length === 0 && (
+                      <ThemedText variant="caption" color="textMuted" style={{ textAlign: 'center', paddingVertical: spacing.sm }}>
+                        No organization matches “{orgSearch.trim()}”.
+                      </ThemedText>
+                    )}
+                  </View>
+                )}
+                <Pressable
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    setIsCustomOrg(true);
+                    setOrgDropdownOpen(false);
+                  }}
+                  style={{ marginTop: spacing.xs, alignSelf: 'flex-start' }}
+                >
+                  <ThemedText variant="caption" color={isCustomOrg ? 'primary' : 'textSecondary'} fontFamily="medium">
+                    {isCustomOrg ? '✓ Using custom org' : '+ Use custom org code'}
+                  </ThemedText>
+                </Pressable>
 
                 {isCustomOrg && (
                   <Input
@@ -213,7 +272,7 @@ export default function LoginScreen() {
 
               <Input
                 label="Email"
-                placeholder="agent@aquila.ng"
+                placeholder="agent@iaquila.com.ng"
                 value={email}
                 onChangeText={setEmail}
                 autoCapitalize="none"
@@ -245,7 +304,7 @@ export default function LoginScreen() {
               ) : null}
 
               <Button
-                label="Connect & Access Console"
+                label="Access Console"
                 onPress={handleLogin}
                 loading={loginMutation.isPending}
                 fullWidth
@@ -259,13 +318,13 @@ export default function LoginScreen() {
                 <ThemedText variant="label" color="textMuted" style={{ textAlign: 'center', marginBottom: spacing.xs }}>
                   ONE-TAP DEMO ROLES
                 </ThemedText>
-                <View style={{ flexDirection: 'row', gap: spacing.xs }}>
+                <View style={{ gap: spacing.xs }}>
                   <Button
                     label="Field Agent"
                     variant="outline"
                     onPress={() => launchDemo('agent')}
                     loading={loginMutation.isPending}
-                    style={{ flex: 1 }}
+                    fullWidth
                     size="sm"
                   />
                   <Button
@@ -273,7 +332,7 @@ export default function LoginScreen() {
                     variant="outline"
                     onPress={() => launchDemo('polling')}
                     loading={loginMutation.isPending}
-                    style={{ flex: 1 }}
+                    fullWidth
                     size="sm"
                   />
                   <Button
@@ -281,7 +340,7 @@ export default function LoginScreen() {
                     variant="outline"
                     onPress={() => launchDemo('officer')}
                     loading={loginMutation.isPending}
-                    style={{ flex: 1.3 }}
+                    fullWidth
                     size="sm"
                   />
                 </View>
@@ -316,7 +375,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(13, 99, 56, 0.35)',
     marginBottom: spacing.sm,
-    ...shadows.lg,
+    ...Platform.select<object>({
+      ios: shadows.lg,
+      android: { elevation: 0 },
+    }),
   },
   logoImage: {
     width: 58,
@@ -342,16 +404,35 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 6,
   },
-  orgChipsRow: {
+  orgSelector: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 6,
-  },
-  orgChip: {
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: radius.full,
+    alignItems: 'center',
+    gap: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderRadius: radius.md,
     borderWidth: 1,
+  },
+  orgDropdown: {
+    marginTop: 6,
+    padding: spacing.xs,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    gap: 2,
+  },
+  orgOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.xs,
+    paddingVertical: spacing.xs,
+    borderRadius: radius.sm,
+    borderWidth: 1,
+  },
+  orgCodePill: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: radius.full,
+    flexShrink: 0,
   },
   errorBanner: {
     flexDirection: 'row',

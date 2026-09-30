@@ -29,7 +29,7 @@ export const ProfileView: React.FC = () => {
           <div className="bg-[#0E1712] border border-[#1C2E24] rounded-3xl p-6 shadow-xl space-y-5">
             <div className="flex items-center gap-3.5 pb-4 border-b border-[#1C2E24]">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0D6338] to-[#10B981] p-0.5 flex items-center justify-center text-white text-xl font-extrabold shadow-lg shadow-emerald-950/50">
-                {user?.name.slice(0, 2).toUpperCase() || 'AQ'}
+                {user?.name.slice(0, 2).toUpperCase() || 'iAQ'}
               </div>
               <div>
                 <h2 className="text-base font-bold text-white">{user?.name}</h2>
@@ -54,7 +54,7 @@ export const ProfileView: React.FC = () => {
               <div className="flex items-center justify-between py-1 border-b border-[#121F18]">
                 <span className="text-[#718579]">Accreditation Pass Code:</span>
                 <span className="font-mono text-white font-bold">
-                  AQ-2027-NG-{user?.id.slice(-6).toUpperCase()}
+                  IAQ-2027-NG-{user?.id.slice(-6).toUpperCase()}
                 </span>
               </div>
 

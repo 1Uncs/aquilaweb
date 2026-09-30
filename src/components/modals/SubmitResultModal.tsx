@@ -89,7 +89,7 @@ const SubmitResultContent: React.FC<SubmitResultContentProps> = ({
       latitude: selectedPu.latitude || 6.55,
       longitude: selectedPu.longitude || 3.35,
       submittedAt: new Date().toISOString(),
-      submittedBy: userEmail || 'observer@aquila.ng',
+      submittedBy: userEmail || 'observer@iaquila.com.ng',
       evidencePhotoUrl: photoAttached
         ? 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?q=80&w=800'
         : undefined,

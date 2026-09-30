@@ -24,27 +24,27 @@ export interface PredefinedAccount {
 export const PREDEFINED_ACCOUNTS: PredefinedAccount[] = [
   {
     name: 'Ibrahim Danladi',
-    email: 'agent@aquila.ng',
+    email: 'agent@iaquila.com.ng',
     role: 'FIELD_AGENT',
     roleTitle: 'Field Agent',
-    organizationId: 'org-aquila',
-    organizationName: 'Aquila Situation Room',
+    organizationId: 'org-iaquila',
+    organizationName: 'iAQUILA Situation Room HQ',
     description: 'Assigned to 3 Polling Units in Ikeja cluster for parallel vote tabulation.',
     assignedPus: ['pu-s25-lga-1-1', 'pu-s25-lga-1-2', 'pu-s25-lga-1-3'],
   },
   {
     name: 'Chinedu Okafor',
-    email: 'polling@aquila.ng',
+    email: 'polling@iaquila.com.ng',
     role: 'POLLING_AGENT',
     roleTitle: 'Polling Unit Agent',
-    organizationId: 'org-aquila',
-    organizationName: 'Aquila Situation Room',
+    organizationId: 'org-iaquila',
+    organizationName: 'iAQUILA Situation Room HQ',
     description: 'Stationed exclusively at PU 001 Ikeja Grammar School.',
     assignedPus: ['pu-s25-lga-1-1'],
   },
   {
     name: 'Dr. Adebayo Adeleke',
-    email: 'officer@aquila.ng',
+    email: 'officer@iaquila.com.ng',
     role: 'ELECTION_OFFICER',
     roleTitle: 'Election Officer',
     organizationId: 'org-cdd',
@@ -54,21 +54,21 @@ export const PREDEFINED_ACCOUNTS: PredefinedAccount[] = [
   },
   {
     name: 'Amina Bello',
-    email: 'admin@aquila.ng',
+    email: 'admin@iaquila.com.ng',
     role: 'ADMINISTRATOR',
     roleTitle: 'Administrator',
-    organizationId: 'org-aquila',
-    organizationName: 'Aquila Situation Room',
+    organizationId: 'org-iaquila',
+    organizationName: 'iAQUILA Situation Room HQ',
     description: 'Operational manager for live dashboards, collation records and incident review.',
     assignedPus: [],
   },
   {
     name: 'Dr. Farouk Al-Mansoor',
-    email: 'superadmin@aquila.ng',
+    email: 'superadmin@iaquila.com.ng',
     role: 'SUPER_ADMINISTRATOR',
     roleTitle: 'Super Administrator',
-    organizationId: 'org-aquila',
-    organizationName: 'Aquila Situation Room',
+    organizationId: 'org-iaquila',
+    organizationName: 'iAQUILA Situation Room HQ',
     description: 'Full system governance, electoral geography, positions & user roles.',
     assignedPus: [],
   },
@@ -107,7 +107,6 @@ interface AppState {
   // Live Pulse Simulation
   pulseActive: boolean;
   pulseTick: number;
-  pulseTurnoutPercent: number;
   pulseProcessedPus: number;
   totalPus: number;
   togglePulse: () => void;
@@ -250,7 +249,6 @@ export const useAppStore = create<AppState>((set, get) => ({
   // Live simulation
   pulseActive: true,
   pulseTick: 124,
-  pulseTurnoutPercent: 38.6,
   pulseProcessedPus: 128450,
   totalPus: 176846,
   togglePulse: () => set((s) => ({ pulseActive: !s.pulseActive })),
@@ -260,11 +258,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       const nextTick = s.pulseTick + 1;
       const addedPus = Math.floor(Math.random() * 8) + 3;
       const newProcessed = Math.min(s.totalPus, s.pulseProcessedPus + addedPus);
-      const newTurnout = Number(Math.min(74.2, s.pulseTurnoutPercent + 0.02).toFixed(2));
       return {
         pulseTick: nextTick,
         pulseProcessedPus: newProcessed,
-        pulseTurnoutPercent: newTurnout,
       };
     });
   },

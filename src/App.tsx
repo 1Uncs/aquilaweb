@@ -67,7 +67,7 @@ export const AppContent: React.FC = () => {
       <footer className="border-t border-[#1C2E24] bg-[#0E1712] py-6 px-4 text-center text-xs text-[#718579]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="font-extrabold text-white">AQUILA</span>
+            <span className="font-extrabold text-white">iAQUILA</span>
             <span>• Independent Election Monitoring &amp; Parallel Collation System</span>
           </div>
           <p className="text-[11px]">

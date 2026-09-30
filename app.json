@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Aquila",
+    "name": "iAquila",
     "slug": "aquila",
     "owner": "aquila-app",
     "version": "1.0.0",
@@ -16,7 +16,7 @@
       "bundleIdentifier": "com.alabiansolutions.aquila",
       "backgroundColor": "#070C09",
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "Aquila requires your location to geotag submitted electoral results and field incident evidence."
+        "NSLocationWhenInUseUsageDescription": "iAquila requires your location to geotag submitted electoral results and field incident evidence."
       }
     },
     "android": {

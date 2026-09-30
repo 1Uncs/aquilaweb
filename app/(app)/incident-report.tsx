@@ -305,7 +305,7 @@ export default function ReportIncidentScreen() {
     setSubmitting(false);
     Alert.alert(
       'Incident Dispatched',
-      'Incident report transmitted successfully to the Aquila Incident Control Room.',
+      'Incident report transmitted successfully to the iAquila Incident Control Room.',
       [{ text: 'OK', onPress: () => router.back() }]
     );
   };

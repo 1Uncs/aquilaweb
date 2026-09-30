@@ -4,9 +4,6 @@ import {
   FileText,
   AlertTriangle,
   ChevronDown,
-  Pause,
-  Play,
-  RotateCw,
 } from 'lucide-react';
 
 export const Header: React.FC = () => {
@@ -14,9 +11,6 @@ export const Header: React.FC = () => {
     user,
     loginWithAccount,
     pulseActive,
-    pulseTick,
-    togglePulse,
-    stepPulse,
     results,
     setSubmitResultOpen,
     setReportIncidentOpen,
@@ -61,7 +55,7 @@ export const Header: React.FC = () => {
             <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-[#0D6338] to-[#10B981] p-1 shadow-lg shadow-emerald-950/50 flex items-center justify-center overflow-hidden">
               <img
                 src="/assets/eagle-head.png"
-                alt="Aquila"
+                alt="iAquila"
                 className="w-7 h-7 object-contain drop-shadow"
                 onError={(e) => {
                   (e.target as HTMLElement).style.display = 'none';
@@ -70,9 +64,9 @@ export const Header: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-lg tracking-wider text-white">AQUILA</span>
+                <span className="font-extrabold text-lg tracking-wider text-white">iAQUILA</span>
                 <span
-                  title="Aquila Real-time Election Intelligence Platform"
+                  title="iAquila Real-time Election Intelligence Platform"
                   className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                 >
                   2027 ELECTION
@@ -84,31 +78,19 @@ export const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Live Pulse Indicator & Controller */}
+          {/* Live Status Indicator */}
           <div className="hidden md:flex items-center gap-2 pl-4 border-l border-[#1C2E24]">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0E1712] border border-[#1C2E24]">
-              <span
-                className={`w-2 h-2 rounded-full ${
-                  pulseActive ? 'bg-emerald-400 animate-pulse ring-2 ring-emerald-500/30' : 'bg-zinc-500'
-                }`}
-              />
-              <span className="text-xs font-mono font-semibold text-emerald-400">
-                PULSE #{pulseTick}
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#0E1712] border border-[#1C2E24]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <button
-                onClick={togglePulse}
-                title={pulseActive ? 'Pause Pulse' : 'Resume Pulse'}
-                className="ml-1 p-0.5 text-[#94A89D] hover:text-white rounded hover:bg-[#15241D]"
-              >
-                {pulseActive ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 text-emerald-400" />}
-              </button>
-              <button
-                onClick={stepPulse}
-                title="Trigger Manual Pulse Step"
-                className="p-0.5 text-[#94A89D] hover:text-white rounded hover:bg-[#15241D]"
-              >
-                <RotateCw className="w-3 h-3" />
-              </button>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-400">
+                LIVE
+              </span>
+              <span className="text-[10px] text-[#718579] font-medium hidden lg:inline">
+                · Synced
+              </span>
             </div>
           </div>
         </div>

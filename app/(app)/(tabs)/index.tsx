@@ -237,8 +237,8 @@ export default function DashboardScreen() {
             <View style={{ flex: 1 }}>
               <View style={styles.orgTagRow}>
                 <View style={[styles.orgDot, { backgroundColor: colors.primary }]} />
-                <ThemedText variant="label" color="primary" fontFamily="bold" numberOfLines={1}>
-                  {user?.organizationName ?? 'AQUILA SITUATION ROOM'}
+                <ThemedText variant="label" color="primary" fontFamily="bold" numberOfLines={1} style={{ textTransform: 'none' }}>
+                  {(user?.organizationName ?? 'iAQUILA SITUATION ROOM').replace(/i?aquila/gi, 'iAQUILA')}
                 </ThemedText>
               </View>
               <ThemedText variant="title" color="text" fontFamily="bold" style={{ marginTop: 2 }}>
@@ -258,7 +258,7 @@ export default function DashboardScreen() {
                 ]}
               />
               <ThemedText variant="label" color="primary" fontFamily="bold">
-                LIVE PULSE
+                LIVE
               </ThemedText>
             </View>
           </View>
@@ -472,7 +472,7 @@ export default function DashboardScreen() {
               </View>
               <View style={{ marginLeft: spacing.xs }}>
                 <ThemedText variant="title" color="text" fontFamily="bold">
-                  Aquila AI Projection
+                  iAquila AI Projection
                 </ThemedText>
                 <ThemedText variant="label" color="primary" fontFamily="medium">
                   NEURAL ELECTION SIMULATION MODEL
@@ -996,8 +996,8 @@ const styles = StyleSheet.create({
     gap: spacing.md,
   },
   consoleHeader: {
-    padding: spacing.md,
-    borderRadius: radius.lg,
+    padding: spacing.sm,
+    borderRadius: radius.md,
     borderWidth: 1,
     backgroundColor: 'rgba(13, 99, 56, 0.04)',
     ...shadows.sm,
@@ -1005,7 +1005,7 @@ const styles = StyleSheet.create({
   consoleTopRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   orgTagRow: {
     flexDirection: 'row',
@@ -1013,30 +1013,30 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   orgDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
   },
   pulseBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
     borderRadius: radius.full,
     borderWidth: 1,
   },
   pulseDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginRight: 6,
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    marginRight: 5,
   },
   tickerStatsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: spacing.md,
-    paddingTop: spacing.sm,
+    marginTop: spacing.sm,
+    paddingTop: spacing.xs,
     borderTopWidth: 1,
     borderTopColor: 'rgba(0,0,0,0.06)',
   },
@@ -1045,7 +1045,7 @@ const styles = StyleSheet.create({
   },
   statDivider: {
     width: 1,
-    height: 28,
+    height: 24,
     backgroundColor: 'rgba(0,0,0,0.08)',
     marginHorizontal: spacing.xs,
   },
