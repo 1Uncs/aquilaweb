@@ -1,19 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import {
   MapPin,
-  AlertTriangle,
-  Users,
-  CheckCircle2,
   ChevronRight,
   Sparkles,
   Layers,
   Globe,
   Flame,
-  X,
-  TrendingUp,
 } from 'lucide-react';
 import { useAppStore } from '../store';
-import { NIGERIA_STATES } from '../data/mockData';
 
 export type GeoLevel = 'state' | 'lga';
 export type MapHeatMode = 'party' | 'density';

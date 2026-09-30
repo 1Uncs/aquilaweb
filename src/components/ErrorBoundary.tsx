@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo, ReactNode } from 'react';
 import { RotateCcw, ShieldAlert } from 'lucide-react';
 
 interface Props {

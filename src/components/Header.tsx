@@ -10,7 +10,6 @@ export const Header: React.FC = () => {
   const {
     user,
     loginWithAccount,
-    pulseActive,
     results,
     setSubmitResultOpen,
     setReportIncidentOpen,
