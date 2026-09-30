@@ -17,8 +17,27 @@
       --primary-dark: #0D6338;
       --text-main: #F1F7F3;
       --text-muted: #8E9C94;
+      --text-body: #D1DED6;
+      --text-heading: #FFFFFF;
+      --step-box-bg: #13211A;
+      --callout-bg: rgba(13, 99, 56, 0.2);
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #F8FAF8;
+        --card-bg: #FFFFFF;
+        --border: #DDE5E0;
+        --primary: #0D6338;
+        --primary-dark: #083D22;
+        --text-main: #0F1713;
+        --text-muted: #52665B;
+        --text-body: #2D3D33;
+        --text-heading: #0F1713;
+        --step-box-bg: #F0F5F2;
+        --callout-bg: rgba(13, 99, 56, 0.08);
+      }
     }
     * {
       box-sizing: border-box;
@@ -62,7 +81,7 @@
     h1 {
       font-size: 2rem;
       font-weight: 800;
-      color: #FFFFFF;
+      color: var(--text-heading);
       letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
@@ -74,13 +93,13 @@
     h2 {
       font-size: 1.25rem;
       font-weight: 700;
-      color: #FFFFFF;
+      color: var(--text-heading);
       margin: 2rem 0 0.75rem;
       border-left: 3px solid var(--primary);
       padding-left: 0.75rem;
     }
     p, ul, ol {
-      color: #D1DED6;
+      color: var(--text-body);
       font-size: 0.95rem;
       margin-bottom: 1rem;
     }
@@ -91,7 +110,7 @@
       margin-bottom: 0.5rem;
     }
     strong {
-      color: #FFFFFF;
+      color: var(--text-heading);
     }
     a {
       color: var(--primary);
@@ -101,7 +120,7 @@
       text-decoration: underline;
     }
     .step-box {
-      background: #13211A;
+      background: var(--step-box-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1.25rem;
@@ -114,7 +133,7 @@
       width: 26px;
       height: 26px;
       background: var(--primary);
-      color: #070C09;
+      color: #FFFFFF;
       font-weight: 800;
       border-radius: 50%;
       font-size: 0.85rem;
@@ -122,12 +141,12 @@
     }
     .step-title {
       font-weight: 700;
-      color: #FFFFFF;
+      color: var(--text-heading);
       display: inline-block;
       margin-bottom: 0.5rem;
     }
     .callout {
-      background: rgba(13, 99, 56, 0.2);
+      background: var(--callout-bg);
       border-left: 4px solid var(--primary);
       padding: 1rem 1.25rem;
       border-radius: 4px;
@@ -254,6 +273,8 @@
       <div class="footer-links">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms &amp; Conditions</a>
+        <a href="/support.html">Help &amp; Support</a>
+        <a href="https://iaquila.com.ng">Main Site</a>
       </div>
     </div>
   </div>

@@ -12,13 +12,32 @@
     :root {
       --bg: #070C09;
       --card-bg: #0E1712;
+      --card-elevated: #121F18;
       --border: #1C2E24;
       --primary: #10B981;
       --primary-dark: #0D6338;
       --text-main: #F1F7F3;
       --text-muted: #8E9C94;
+      --text-body: #D1DED6;
+      --text-heading: #FFFFFF;
+      --meta-bg: rgba(13, 99, 56, 0.15);
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #F8FAF8;
+        --card-bg: #FFFFFF;
+        --card-elevated: #F0F5F2;
+        --border: #DDE5E0;
+        --primary: #0D6338;
+        --primary-dark: #083D22;
+        --text-main: #0F1713;
+        --text-muted: #52665B;
+        --text-body: #2D3D33;
+        --text-heading: #0F1713;
+        --meta-bg: rgba(13, 99, 56, 0.08);
+      }
     }
     * {
       box-sizing: border-box;
@@ -62,7 +81,7 @@
     h1 {
       font-size: 2rem;
       font-weight: 800;
-      color: #FFFFFF;
+      color: var(--text-heading);
       letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
@@ -73,13 +92,13 @@
     h2 {
       font-size: 1.25rem;
       font-weight: 700;
-      color: #FFFFFF;
+      color: var(--text-heading);
       margin: 2rem 0 1rem;
       border-left: 3px solid var(--primary);
       padding-left: 0.75rem;
     }
     p, ul, ol {
-      color: #D1DED6;
+      color: var(--text-body);
       font-size: 0.95rem;
       margin-bottom: 1rem;
     }
@@ -90,7 +109,7 @@
       margin-bottom: 0.5rem;
     }
     strong {
-      color: #FFFFFF;
+      color: var(--text-heading);
     }
     a {
       color: var(--primary);
@@ -106,7 +125,7 @@
       margin: 1.5rem 0;
     }
     .contact-card {
-      background: #121F18;
+      background: var(--card-elevated);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1.25rem;
@@ -126,7 +145,7 @@
     .contact-value {
       font-size: 1.05rem;
       font-weight: 700;
-      color: #FFFFFF;
+      color: var(--text-heading);
       margin-bottom: 0.25rem;
     }
     .contact-desc {
@@ -134,7 +153,7 @@
       color: var(--text-muted);
     }
     details {
-      background: #121F18;
+      background: var(--card-elevated);
       border: 1px solid var(--border);
       border-radius: 8px;
       margin-bottom: 0.75rem;
@@ -146,7 +165,7 @@
     }
     summary {
       font-weight: 600;
-      color: #FFFFFF;
+      color: var(--text-heading);
       cursor: pointer;
       list-style: none;
       display: flex;
@@ -314,6 +333,7 @@
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms &amp; Conditions</a>
         <a href="/deletion.html">Account Deletion</a>
+        <a href="https://iaquila.com.ng">Main Site</a>
       </div>
     </div>
   </div>
