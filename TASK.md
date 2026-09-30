@@ -46,6 +46,7 @@
   * Live Status Badge & Pulse Cleanup: Replaced debug `PULSE #<tick>` counter and manual pause/step controls in Header with clean production `LIVE · Synced` indicator and `LIVE COLLATION` status badges.
   * Station Console Header Compaction & Multi-Viewport Adaptability: Reduced station console vertical height by ~45% (desktop merges into single horizontal command strip; mobile splits into 2 ergonomic tiers with compact badges and auto-scaled metrics). Verified responsiveness across 320px–430px phones, 768px–1024px tablets, and desktop/ultrawide displays.
   * Station Console Dead Zone Elimination: Converted desktop container to `w-fit` with tight inter-metric spacing (`gap-6 lg:gap-8`) and vertical divider, eliminating horizontal dead zone across ultra-wide viewports while preserving edge-to-edge flow on mobile.
+  * Root Cleanup (Web Monolith Focus): Removed legacy Expo/React Native mobile artifacts (`app/`, `core/`, `features/`, `constants/`, `types/`, `scripts/`, `app.json`, `eas.json`, `metro.config.cjs`, `babel.config.js`, `expo-env.d.ts`). Verified Vite web build and TS compilation remain 100% operational with 0 errors.
 
 ## Verification Status
 Staff Invariant Audit: INVARIANTS VERIFIED

@@ -8,16 +8,6 @@ export default [
   js.configs.recommended,
   {
     ignores: [
-      'metro.config.cjs',
-      'babel.config.js',
-      'scripts/',
-      'app/',
-      'features/',
-      'components/',
-      'constants/',
-      'hooks/',
-      'lib/',
-      'types/',
       'dist/',
       'node_modules/',
     ],
