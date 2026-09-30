@@ -6,8 +6,26 @@
   <title>iAquila — Independent Election Monitoring &amp; Parallel Collation System</title>
   <meta name="description" content="Independent electoral intelligence, parallel collation, live field incident triage, and AI projection engine for accredited observer missions in Nigeria." />
   
+  <meta name="theme-color" content="#070C09" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F8FAF8" media="(prefers-color-scheme: light)" />
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="iAquila" />
+  <meta property="og:title" content="iAquila — Independent Election Monitoring &amp; Parallel Collation System" />
+  <meta property="og:description" content="Independent electoral intelligence, parallel collation, live field incident triage, and AI projection engine for accredited observer missions in Nigeria." />
+  <meta property="og:image" content="https://app.iaquila.com.ng/assets/eagle-head.png" />
+  <meta property="og:url" content="https://iaquila.com.ng" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="iAquila — Independent Election Monitoring &amp; Parallel Collation System" />
+  <meta name="twitter:description" content="Independent electoral intelligence, parallel collation, live field incident triage, and AI projection engine for accredited observer missions in Nigeria." />
+  <meta name="twitter:image" content="https://app.iaquila.com.ng/assets/eagle-head.png" />
+  
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://app.iaquila.com.ng/assets/favicon.png" />
+  <link rel="icon" type="image/png" href="https://app.iaquila.com.ng/assets/eagle-head.png" />
+  <link rel="apple-touch-icon" href="https://app.iaquila.com.ng/assets/eagle-head.png" />
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,14 +69,11 @@
       }
       .gradient-text {
         background: linear-gradient(135deg, #0F1713 30%, var(--primary) 100%);
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      .stat-number, .feature-title, .form-group label {
-        color: #0F1713;
-      }
-      .tally-box, .form-input {
-        background: #F4F7F5;
+      .stat-number, .feature-title {
         color: #0F1713;
       }
       footer {
@@ -66,6 +81,39 @@
       }
       .footer-col h4 {
         color: #0F1713;
+      }
+      .mobile-banner {
+        background: linear-gradient(135deg, #EDF7F2 0%, #DFEFE7 100%);
+        border-color: #C2DACE;
+      }
+      .mobile-banner h2 {
+        color: #0F1713;
+      }
+      .mobile-banner p {
+        color: #435A4D !important;
+      }
+      .mobile-features-card {
+        background: #FFFFFF;
+        border-color: #DDE5E0;
+      }
+      .mobile-feat-title {
+        color: #0F1713;
+      }
+      .store-badge {
+        background: #0F1713;
+        color: #FFFFFF;
+        border-color: #2D3D33;
+      }
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+      .live-pulse {
+        background: rgba(13, 99, 56, 0.08);
+        border-color: rgba(13, 99, 56, 0.25);
+        color: var(--primary);
+      }
+      .hero-stores-label {
+        color: #52665B;
       }
     }
 
@@ -81,8 +129,11 @@
       font-family: var(--font-sans);
       line-height: 1.6;
       overflow-x: hidden;
-      selection-background-color: var(--primary);
-      selection-color: #000;
+    }
+
+    ::selection {
+      background-color: var(--primary);
+      color: #000;
     }
 
     /* Ambient Background Glow */
@@ -248,6 +299,7 @@
     }
     .gradient-text {
       background: linear-gradient(135deg, #FFFFFF 30%, var(--primary) 100%);
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -264,7 +316,28 @@
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
+    }
+    .hero-stores {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 4.5rem;
+    }
+    .hero-stores-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hero-store-pills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
     }
 
     /* Stats Grid */
@@ -293,77 +366,6 @@
       color: var(--text-muted);
       font-weight: 500;
     }
-
-    /* Console Preview Card */
-    .preview-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-      margin-bottom: 6rem;
-      position: relative;
-    }
-    .preview-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .console-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .preview-body {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1.5rem;
-    }
-    .tally-box {
-      background: #070C09;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-    }
-    .tally-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-    }
-    .candidate-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    }
-    .candidate-row:last-child {
-      border-bottom: none;
-    }
-    .candidate-info {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .party-chip {
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 800;
-      font-size: 0.75rem;
-    }
-    .chip-apc { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
-    .chip-pdp { background: rgba(239, 68, 68, 0.2); color: #F87171; }
-    .chip-lp { background: rgba(16, 185, 129, 0.2); color: #34D399; }
-    .chip-nnpp { background: rgba(245, 158, 11, 0.2); color: #FBBF24; }
 
     /* Features Grid */
     .features-section {
@@ -443,12 +445,6 @@
       gap: 2.5rem;
       align-items: center;
     }
-    .badge-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.75rem;
-    }
     .store-badges {
       display: flex;
       flex-wrap: wrap;
@@ -494,46 +490,46 @@
       letter-spacing: -0.01em;
       color: #FFFFFF;
     }
-
-    /* Registration Form Card */
-    .form-section {
-      background: var(--card-bg);
+    .mobile-features-card {
+      background: rgba(0, 0, 0, 0.35);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3rem;
-      max-width: 800px;
-      margin: 0 auto 6rem;
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
     }
-    .form-group {
-      margin-bottom: 1.25rem;
+    .mobile-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
       text-align: left;
     }
-    .form-group label {
-      display: block;
+    .mobile-check {
+      width: 24px;
+      height: 24px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--primary);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .mobile-feat-title {
+      font-size: 0.95rem;
+      font-weight: 700;
       color: #FFFFFF;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.2rem;
     }
-    .form-input {
-      width: 100%;
-      background: #070C09;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-      color: #FFFFFF;
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: border-color 0.2s;
-    }
-    .form-input:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-    .form-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+    .mobile-feat-desc {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
     /* Footer */
@@ -579,50 +575,20 @@
       font-size: 0.8rem;
     }
 
-    /* Modal */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
-    .modal-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-highlight);
-      border-radius: 16px;
-      padding: 2.5rem;
-      max-width: 540px;
-      width: 100%;
-      position: relative;
-    }
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1.25rem;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
     /* Responsive */
     @media (max-width: 992px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .grid-3 { grid-template-columns: 1fr; }
-      .preview-body { grid-template-columns: 1fr; }
       .mobile-banner { grid-template-columns: 1fr; padding: 2rem; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
-      h1 { font-size: 2.3rem; }
+      .brand-tag { display: none; }
       .nav-links { display: none; }
-      .form-grid-2 { grid-template-columns: 1fr; }
+      h1 { font-size: 2.1rem; }
+      .hero { padding: 3.5rem 0 2.5rem; }
+      .hero-cta { flex-direction: column; width: 100%; }
+      .hero-cta .btn { width: 100%; }
       .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -636,19 +602,19 @@
       <a href="/" class="brand">
         <img src="https://app.iaquila.com.ng/assets/eagle-head.png" alt="iAquila Logo" style="width: 38px; height: 38px; object-fit: contain; border-radius: 8px; flex-shrink: 0;" />
         <span>iAQUILA</span>
-        <span class="brand-tag">Accredited Observer Suite</span>
+        <span class="brand-tag">Election Intelligence Platform</span>
       </a>
 
       <ul class="nav-links">
-        <li><a href="#features">Capabilities</a></li>
         <li><a href="#mobile">Mobile App</a></li>
-        <li><a href="#register">Accreditation</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="/register.html">Pricing &amp; Registration</a></li>
         <li><a href="https://app.iaquila.com.ng/support.html">Support</a></li>
       </ul>
 
       <div class="nav-actions">
         <a href="https://app.iaquila.com.ng" class="btn btn-outline">Sign In</a>
-        <a href="#register" class="btn btn-primary">Request Access</a>
+        <a href="/register.html" class="btn btn-primary">Get Started</a>
       </div>
     </div>
   </header>
@@ -658,7 +624,7 @@
     <div class="container">
       <div class="live-pulse">
         <span class="pulse-dot"></span>
-        <span>Live &bull; Federal Republic of Nigeria Observer Network</span>
+        <span>Live &bull; National Election Monitoring Network</span>
       </div>
 
       <h1>
@@ -667,54 +633,45 @@
       </h1>
 
       <p class="hero-sub">
-        Empowering accredited observer missions, field agents, and civil society with cryptographic vote collation, real-time incident triage, and verified electoral transparency across all 176,846 Polling Units.
+        Empowering election observers, field agents, and civil society with cryptographic vote collation, real-time incident reporting, and data verification across all 176,846 Polling Units.
       </p>
 
       <div class="hero-cta">
         <a href="https://app.iaquila.com.ng" class="btn btn-primary btn-lg">
-          Launch Situation Room Console &rarr;
+          Launch Console &rarr;
         </a>
-        <a href="#register" class="btn btn-outline btn-lg">
-          Request Mission Accreditation
+        <a href="/register.html" class="btn btn-outline btn-lg">
+          Get Started &bull; Register
         </a>
       </div>
 
-      <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3.5rem;">
-        <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-right: 0.25rem;">
-          Field App:
-        </span>
-        <a href="#mobile" class="store-badge" style="padding: 0.35rem 0.75rem; min-width: auto;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.78 1.06-1.85.94-2.94-.92.04-2.02.61-2.67 1.39-.58.68-1.09 1.77-.95 2.83 1.03.08 2.06-.52 2.68-1.28z"/>
-          </svg>
-          <div class="store-badge-text">
-            <span class="store-badge-sub" style="font-size: 0.55rem;">iOS App</span>
-            <span class="store-badge-title" style="font-size: 0.8rem;">App Store</span>
-          </div>
-        </a>
+      <!-- Quick Store Badges inside Hero -->
+      <div class="hero-stores">
+        <span class="hero-stores-label">Download Field Observer Mobile App</span>
+        <div class="hero-store-pills">
+          <a href="#mobile" class="store-badge" title="Download on the Apple App Store">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.78 1.06-1.85.94-2.94-.92.04-2.02.61-2.67 1.39-.58.68-1.09 1.77-.95 2.83 1.03.08 2.06-.52 2.68-1.28z"/>
+            </svg>
+            <div class="store-badge-text">
+              <span class="store-badge-sub">Download on</span>
+              <span class="store-badge-title">App Store</span>
+            </div>
+          </a>
 
-        <a href="#mobile" class="store-badge" style="padding: 0.35rem 0.75rem; min-width: auto;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M3.609 1.814L13.793 12 3.61 22.186A2.25 2.25 0 0 1 3 20.6V3.4c0-.62.22-1.2.609-1.586z" fill="#00C3FF"/>
-            <path d="M17.18 8.613L13.793 12l3.387 3.387 3.82-2.19a2.23 2.23 0 0 0 0-3.884l-3.82-2.19z" fill="#FFD400"/>
-            <path d="M3.609 1.814l10.184 10.186 3.387-3.387-11.45-6.56C5.074 1.65 4.29 1.62 3.609 1.814z" fill="#00E676"/>
-            <path d="M17.18 15.387l-3.387-3.387L3.609 22.186c.681.194 1.465.164 2.121-.213l11.45-6.586z" fill="#FF334B"/>
-          </svg>
-          <div class="store-badge-text">
-            <span class="store-badge-sub" style="font-size: 0.55rem;">Android App</span>
-            <span class="store-badge-title" style="font-size: 0.8rem;">Google Play</span>
-          </div>
-        </a>
-
-        <a href="mailto:support@iaquila.com.ng?subject=Mobile%20APK%20Request" class="store-badge" style="padding: 0.35rem 0.75rem; min-width: auto;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #10B981;">
-            <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 2.23 12.95 2 12 2c-.96 0-1.86.23-2.66.63L7.85 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 4.26 6 5.92 6 7.8h12c0-1.88-.97-3.54-2.47-4.64zM9 5.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75zm6 0c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/>
-          </svg>
-          <div class="store-badge-text">
-            <span class="store-badge-sub" style="font-size: 0.55rem;">Direct Install</span>
-            <span class="store-badge-title" style="font-size: 0.8rem;">Android APK</span>
-          </div>
-        </a>
+          <a href="#mobile" class="store-badge" title="Get it on Google Play">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M3.609 1.814L13.793 12 3.61 22.186A2.25 2.25 0 0 1 3 20.6V3.4c0-.62.22-1.2.609-1.586z" fill="#00C3FF"/>
+              <path d="M17.18 8.613L13.793 12l3.387 3.387 3.82-2.19a2.23 2.23 0 0 0 0-3.884l-3.82-2.19z" fill="#FFD400"/>
+              <path d="M3.609 1.814l10.184 10.186 3.387-3.387-11.45-6.56C5.074 1.65 4.29 1.62 3.609 1.814z" fill="#00E676"/>
+              <path d="M17.18 15.387l-3.387-3.387L3.609 22.186c.681.194 1.465.164 2.121-.213l11.45-6.586z" fill="#FF334B"/>
+            </svg>
+            <div class="store-badge-text">
+              <span class="store-badge-sub">Get it on</span>
+              <span class="store-badge-title">Google Play</span>
+            </div>
+          </a>
+        </div>
       </div>
 
       <!-- Stats Bar -->
@@ -739,14 +696,74 @@
     </div>
   </section>
 
+  <!-- Mobile App Showcase (Elevated Above Features) -->
+  <section class="container" id="mobile" style="margin-bottom: 2rem;">
+    <div class="mobile-banner">
+      <div>
+        <div class="brand-tag" style="margin-bottom: 1rem; display: inline-block;">Field Observer App</div>
+        <h2 style="font-size: 2rem; margin-bottom: 0.75rem;">iAquila Mobile for Android &amp; iOS</h2>
+        <p style="color: #A3B8AC; font-size: 0.95rem;">
+          Designed specifically for Polling Unit Agents and Cluster Supervisors with covert stealth reporting modes, zero-gallery live capture, and one-tap EC8A draft submission.
+        </p>
+        <div class="store-badges">
+          <a href="#mobile" class="store-badge" title="Download on the Apple App Store">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.78 1.06-1.85.94-2.94-.92.04-2.02.61-2.67 1.39-.58.68-1.09 1.77-.95 2.83 1.03.08 2.06-.52 2.68-1.28z"/>
+            </svg>
+            <div class="store-badge-text">
+              <span class="store-badge-sub">Download on the</span>
+              <span class="store-badge-title">App Store</span>
+            </div>
+          </a>
+
+          <a href="#mobile" class="store-badge" title="Get it on Google Play">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3.609 1.814L13.793 12 3.61 22.186A2.25 2.25 0 0 1 3 20.6V3.4c0-.62.22-1.2.609-1.586z" fill="#00C3FF"/>
+              <path d="M17.18 8.613L13.793 12l3.387 3.387 3.82-2.19a2.23 2.23 0 0 0 0-3.884l-3.82-2.19z" fill="#FFD400"/>
+              <path d="M3.609 1.814l10.184 10.186 3.387-3.387-11.45-6.56C5.074 1.65 4.29 1.62 3.609 1.814z" fill="#00E676"/>
+              <path d="M17.18 15.387l-3.387-3.387L3.609 22.186c.681.194 1.465.164 2.121-.213l11.45-6.586z" fill="#FF334B"/>
+            </svg>
+            <div class="store-badge-text">
+              <span class="store-badge-sub">Get it on</span>
+              <span class="store-badge-title">Google Play</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="mobile-features-card">
+        <div class="mobile-feature-item">
+          <span class="mobile-check">&check;</span>
+          <div>
+            <div class="mobile-feat-title">Encrypted Offline Queue</div>
+            <div class="mobile-feat-desc">Submissions stay tamper-proof in remote zero-reception polling units and auto-sync immediately when connectivity resumes.</div>
+          </div>
+        </div>
+        <div class="mobile-feature-item">
+          <span class="mobile-check">&check;</span>
+          <div>
+            <div class="mobile-feat-title">Anti-Tamper Live Capture</div>
+            <div class="mobile-feat-desc">Form EC8A photos and voice notes are captured live and cryptographically stamped with gazetted GPS coordinates.</div>
+          </div>
+        </div>
+        <div class="mobile-feature-item">
+          <span class="mobile-check">&check;</span>
+          <div>
+            <div class="mobile-feat-title">Covert Stealth Mode</div>
+            <div class="mobile-feat-desc">Flash-muted and shutter-silenced recording protocols designed to protect field observers in volatile environments.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Features Section -->
   <section class="features-section" id="features">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="section-badge">Platform Capabilities</span>
-        <h2>Engineered for High-Stakes Electoral Observation</h2>
+        <span class="section-badge">Platform Features</span>
+        <h2>Engineered for High-Stakes Election Monitoring</h2>
         <p style="color: var(--text-muted);">
-          A dual-ecosystem mobile and situation room architecture built to resist network blackouts, verify ballot authenticity, and triage critical incident alerts in real time.
+          A secure web console and offline-ready mobile app built to verify ballot authenticity, resist network blackouts, and track field incidents in real time.
         </p>
       </div>
 
@@ -802,118 +819,22 @@
     </div>
   </section>
 
-  <!-- Mobile App Download Banner -->
-  <section class="container" id="mobile">
-    <div class="mobile-banner">
-      <div>
-        <div class="brand-tag" style="margin-bottom: 1rem; display: inline-block;">Field Observer App</div>
-        <h2 style="font-size: 2rem; margin-bottom: 0.75rem;">iAquila Mobile for Android &amp; iOS</h2>
-        <p style="color: #A3B8AC; font-size: 0.95rem;">
-          Designed specifically for Polling Unit Agents and Cluster Supervisors with covert stealth reporting modes, zero-gallery live capture, and one-tap EC8A draft submission.
-        </p>
-        <div class="store-badges">
-          <a href="#mobile" class="store-badge" title="Download on the Apple App Store">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.78 1.06-1.85.94-2.94-.92.04-2.02.61-2.67 1.39-.58.68-1.09 1.77-.95 2.83 1.03.08 2.06-.52 2.68-1.28z"/>
-            </svg>
-            <div class="store-badge-text">
-              <span class="store-badge-sub">Download on the</span>
-              <span class="store-badge-title">App Store</span>
-            </div>
-          </a>
-
-          <a href="#mobile" class="store-badge" title="Get it on Google Play">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M3.609 1.814L13.793 12 3.61 22.186A2.25 2.25 0 0 1 3 20.6V3.4c0-.62.22-1.2.609-1.586z" fill="#00C3FF"/>
-              <path d="M17.18 8.613L13.793 12l3.387 3.387 3.82-2.19a2.23 2.23 0 0 0 0-3.884l-3.82-2.19z" fill="#FFD400"/>
-              <path d="M3.609 1.814l10.184 10.186 3.387-3.387-11.45-6.56C5.074 1.65 4.29 1.62 3.609 1.814z" fill="#00E676"/>
-              <path d="M17.18 15.387l-3.387-3.387L3.609 22.186c.681.194 1.465.164 2.121-.213l11.45-6.586z" fill="#FF334B"/>
-            </svg>
-            <div class="store-badge-text">
-              <span class="store-badge-sub">Get it on</span>
-              <span class="store-badge-title">Google Play</span>
-            </div>
-          </a>
-
-          <a href="mailto:support@iaquila.com.ng?subject=Mobile%20APK%20Request" class="store-badge" title="Direct Android APK Download">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color: #10B981;">
-              <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 2.23 12.95 2 12 2c-.96 0-1.86.23-2.66.63L7.85 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 4.26 6 5.92 6 7.8h12c0-1.88-.97-3.54-2.47-4.64zM9 5.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75zm6 0c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/>
-            </svg>
-            <div class="store-badge-text">
-              <span class="store-badge-sub">Direct Install</span>
-              <span class="store-badge-title">Android APK</span>
-            </div>
-          </a>
-        </div>
+  <!-- Mission Activation Call To Action -->
+  <section class="container" style="margin-bottom: 6rem; text-align: center;">
+    <div style="background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-elevated) 100%); border: 1px solid var(--border-highlight); border-radius: 18px; padding: 3.5rem 2rem;">
+      <span class="section-badge">Ready for Deployment</span>
+      <h2 style="font-size: 2.2rem; margin-bottom: 0.75rem;">Activate Your Election Situation Room</h2>
+      <p style="color: var(--text-muted); max-width: 620px; margin: 0 auto 2.25rem; font-size: 1rem; line-height: 1.6;">
+        Choose your observer tier, complete verified Paystack onboarding, and stream cryptographic Form EC8A collation across Nigeria in real time.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/register.html" class="btn btn-primary btn-lg">
+          Get Started &bull; Register Workspace &rarr;
+        </a>
+        <a href="https://app.iaquila.com.ng" class="btn btn-outline btn-lg">
+          Launch Console
+        </a>
       </div>
-      <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: #8E9C94;">
-        <div style="color: var(--primary); font-weight: bold; margin-bottom: 0.5rem;">// APPLICATION METRICS</div>
-        <div>Package: com.alabian.aquila</div>
-        <div>Target: Android 14+ / iOS 17+</div>
-        <div>Engine: React Native 0.86 / Expo SDK 57</div>
-        <div>Security: AES-256 / SecureStore</div>
-        <div>Status: Certified Observer Release</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Accreditation Request / Registration Form -->
-  <section class="container" id="register">
-    <div class="form-section">
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <span class="section-badge">Accredited Access</span>
-        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Request Observer Mission Onboarding</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
-          Provision your organization tenancy, field agent seats, and situation room access codes.
-        </p>
-      </div>
-
-      <form id="onboardingForm" onsubmit="handleFormSubmit(event)">
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label for="orgName">Organization / Mission Name *</label>
-            <input type="text" id="orgName" class="form-input" placeholder="e.g. West Africa Observer Mission" required />
-          </div>
-          <div class="form-group">
-            <label for="missionType">Mission Classification *</label>
-            <select id="missionType" class="form-input" required>
-              <option value="CSO">Civil Society Organization (CSO)</option>
-              <option value="INTERNATIONAL">International Observer Body</option>
-              <option value="PARTY">Political Monitoring Desk</option>
-              <option value="MEDIA">Accredited Electoral Media</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label for="contactEmail">Official Contact Email *</label>
-            <input type="email" id="contactEmail" class="form-input" placeholder="lead@yourorganization.org" required />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone / WhatsApp *</label>
-            <input type="tel" id="phone" class="form-input" placeholder="+234 800 000 0000" required />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="agentCount">Projected Field Agent Deployment</label>
-          <select id="agentCount" class="form-input">
-            <option value="1-50">1 - 50 Agents (Targeted Wards)</option>
-            <option value="50-250">50 - 250 Agents (LGA Cluster)</option>
-            <option value="250-1000">250 - 1,000 Agents (Statewide Coverage)</option>
-            <option value="1000+">1,000+ Agents (National Deployment)</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-size: 1rem; margin-top: 1rem;">
-          Submit Mission Application
-        </button>
-
-        <div id="formSuccess" style="display: none; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--primary); padding: 1rem; border-radius: 8px; margin-top: 1.25rem; font-size: 0.9rem; color: #FFFFFF; text-align: center;">
-          &check; Application submitted successfully. Our mission onboarding desk will verify your credentials and dispatch situation room tenancy credentials within 24 hours.
-        </div>
-      </form>
     </div>
   </section>
 
@@ -931,7 +852,7 @@
           </p>
           <div style="margin-top: 1.25rem;">
             <a href="https://app.iaquila.com.ng" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.5rem 1rem;">
-              Situation Room Login &rarr;
+              Launch Console &rarr;
             </a>
           </div>
         </div>
@@ -940,9 +861,10 @@
           <h4>Platform</h4>
           <ul>
             <li><a href="https://app.iaquila.com.ng">Web Console</a></li>
-            <li><a href="#features">Capabilities</a></li>
-            <li><a href="#mobile">Mobile Observer App</a></li>
-            <li><a href="#register">Observer Accreditation</a></li>
+            <li><a href="#mobile">Mobile App</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="/register.html">Pricing &amp; Registration</a></li>
+            <li><a href="https://app.iaquila.com.ng/support.html">Enterprise Desk</a></li>
           </ul>
         </div>
 
@@ -973,13 +895,5 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      document.getElementById('formSuccess').style.display = 'block';
-      document.getElementById('onboardingForm').reset();
-    }
-  </script>
 </body>
 </html>
