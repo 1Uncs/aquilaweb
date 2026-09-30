@@ -348,9 +348,24 @@ export const LoginView: React.FC = () => {
           </div>
         </div>
 
-        <p className="text-[11px] text-[#718579] text-center">
-          Independent Observer Intelligence System · End-to-End Encrypted
-        </p>
+        <div className="space-y-1.5 text-center">
+          <p className="text-[11px] text-[#718579]">
+            Independent Observer Intelligence System · End-to-End Encrypted
+          </p>
+          <div className="flex items-center justify-center gap-3 text-[11px] text-[#718579]">
+            <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition underline">
+              Privacy Policy
+            </a>
+            <span>•</span>
+            <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition underline">
+              Terms of Service
+            </a>
+            <span>•</span>
+            <a href="/deletion.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition underline">
+              Data Deletion
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
